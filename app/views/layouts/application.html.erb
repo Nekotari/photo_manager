@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PhotoManager</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>PhotoManager</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<% if current_user %>
+  <h1>Welcome, <%= current_user.id %></h1>
+  <%= link_to 'Log out', user_session_path(current_user), data: { turbo_method: :delete } %><br>
+<% else %>
+  <h1>This is the index page</h1>
+  <%= link_to 'Login', new_user_session_path %><br>
+<% end %>
+<%= yield %>
+</body>
 </html>

@@ -1,0 +1,24 @@
+<h1>Login page</h1>
+<%= form_with model: @user, url: user_sessions_path do |f| %>
+
+  <div id="flash-messages">
+    <% flash.each do |type, messages| %>
+      <% messages.each do |message| %>
+        <div class="alert alert-<%= type %>" style="color:red">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :id %><br>
+    <%= f.text_field :id %>
+  </div>
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <p>
+    <%= f.submit 'Login' %>
+  </p>
+<% end %>
