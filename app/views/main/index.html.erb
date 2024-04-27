@@ -1,1 +1,20 @@
-<h1>Welcome to the internet</h1>
+<% if current_user %>
+  <h1>Welcome, <%= current_user.id %></h1>
+  <%= link_to 'Log out', user_session_path(current_user), data: { turbo_method: :delete } %><br>
+  <%= link_to 'new photo', new_photo_path(current_user) %><br>
+  <div class="container">
+    <% current_user.photos.order("created_at desc").each_slice(7) do |slice| %>
+      <div class="row">
+        <% slice.each do |photo| %>
+          <div class="image-block">
+            <p class="image-text"><%= photo.description %></p>
+            <%= image_tag photo.image, size: '200' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h1>This is the index page</h1>
+  <%= link_to 'Login', new_user_session_path %><br>
+<% end %>

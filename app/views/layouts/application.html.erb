@@ -11,13 +11,20 @@
 </head>
 
 <body>
-<% if current_user %>
-  <h1>Welcome, <%= current_user.id %></h1>
-  <%= link_to 'Log out', user_session_path(current_user), data: { turbo_method: :delete } %><br>
-<% else %>
-  <h1>This is the index page</h1>
-  <%= link_to 'Login', new_user_session_path %><br>
-<% end %>
+<div id="flash-messages" style="max-width:600px">
+  <% flash.each do |type, messages| %>
+    <% messages.each do |message| %>
+      <label>
+        <input type="checkbox" class="alertCheckbox" autocomplete="off"/>
+        <div class="alert <%= type %>">
+          <span class="alertClose">X</span>
+          <span class="alertText"><%= message %>
+            <br class="clear"/></span>
+        </div>
+      </label>
+    <% end %>
+  <% end %>
+</div>
 <%= yield %>
 </body>
 </html>

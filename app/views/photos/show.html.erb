@@ -1,0 +1,7 @@
+<h1>Your Photos</h1>
+<% @photos.each do |photo| %>
+  <div>
+    <%= image_tag photo.image %>
+    <p><%= photo.description %></p>
+  </div>
+<% end %>

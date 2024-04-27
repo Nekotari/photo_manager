@@ -1,0 +1,16 @@
+.image-text {
+    display: inline;
+    align-items: center;
+}
+
+.image-block {
+    display: inline-block;
+    width: 200px;
+    height: 250px;
+    vertical-align: top;
+}
+
+.image-block img {
+    width: 100%;
+    display: block;
+}

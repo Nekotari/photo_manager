@@ -1,4 +1,6 @@
 class UserSessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -15,13 +17,13 @@ class UserSessionsController < ApplicationController
     @user = User.find_by(id: params[:user][:id])
 
     if errors.any?
-      flash[:alert] = errors
+      flash[:error] = errors
       redirect_to new_user_session_path
     elsif @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:alert] = ["User ID or Password wrong"]
+      flash[:error] = ["User ID or Password wrong"]
       redirect_to new_user_session_path
     end
   end
