@@ -1,24 +1,40 @@
-# README
+# Photo Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple photo sharing application built with Ruby on Rails.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- **User Authentication:** Users can sign up, log in, and log out.
+- **Photo Uploads:** Users can upload photos with descriptions.
+- **Image Storage:** Photos are stored using Active Storage.
+- **Validations:** Photos must have an image attached and a description within 30 characters.
 
-* System dependencies
+## Setup
 
-* Configuration
+### Requirements
 
-* Database creation
+- Ruby (version 3.3.1)
+- Ruby on Rails (version 7.1.3)
 
-* Database initialization
+### Installation
 
-* How to run the test suite
+1. **Clone the repository:**
 
-* Services (job queues, cache servers, search engines, etc.)
+   ```bash
+   git clone https://github.com/Nekotari/photo_manager.git
+2. **Install dependencies:**
+   ```bash
+   cd photo_manager
+   bundle install
+3. **Set up the database:**
+    ```bash
+   rails db:create
+   rails db:migrate
+4. **Start the Rails server:**
+    ```bash
+   rails server
+5. **Open your browser and visit http://localhost:3000 to view the application.**
 
-* Deployment instructions
+### Testing
 
-* ...
+Not implemented without external dependencies
