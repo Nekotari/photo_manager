@@ -1,5 +1,10 @@
 <% if current_user %>
   <h1>Welcome, <%= current_user.id %></h1>
+  <%= link_to 'Link with Twitter',
+              "http://unifa-recruit-my-tweet-app.ap-northeast-1.elasticbeanstalk.com/oauth/authorize" +
+                "?client_id=#{Rails.application.credentials.client_id}&response_type=code&redirect_uri=http://localhost:3000/oauth/callback&scope=write_tweet"
+  %>  <br>
+
   <%= link_to 'Log out', user_session_path(current_user), data: { turbo_method: :delete } %><br>
   <%= link_to 'new photo', new_photo_path(current_user) %><br>
   <div class="container">
@@ -9,6 +14,7 @@
           <div class="image-block">
             <p class="image-text"><%= photo.description %></p>
             <%= image_tag photo.image, size: '200' %>
+            <%= link_to 'Tweet', tweet_photo_path(photo), data: { turbo_method: :post } %><br>
           </div>
         <% end %>
       </div>

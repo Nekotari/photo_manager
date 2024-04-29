@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    # If session[:user_id] is nil, set it to nil, otherwise find the user by id.
     @current_user ||= session[:user_id] && User.find_by(id: session[:user_id])
   end
 
@@ -12,7 +11,7 @@ class ApplicationController < ActionController::Base
   def require_login
     if current_user.nil?
       flash[:error] = ["You must be logged in to access this section"]
-      redirect_to root_path # halts request cycle
+      redirect_to root_path
     end
   end
 end
